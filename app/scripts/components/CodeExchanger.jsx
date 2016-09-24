@@ -27,30 +27,23 @@ const CodeExchanger = React.createClass({
     }
   },
   createCode() {
-    console.log('creating code')
     let peer = this.props.createPeer({ initiator: true, trickle: false })
     peer.on('signal', signal => {
-      let localCode = JSON.stringify(signal)
-      console.log('local code:', localCode)
+      let localCode = btoa(JSON.stringify(signal))
       this.setState({ localCode })
     })
     peer.on('connect', this.props.next)
     this.setState({ peer })
   },
   receiveCode(remoteCode) {
-    let remoteSignal = JSON.parse(remoteCode)
+    let remoteSignal = JSON.parse(atob(remoteCode))
     if(this.props.isInitiator) {
-      console.log('receiving code from second peer')
-      console.log(remoteSignal)
       this.state.peer.signal(remoteSignal)
     }
     else {
-      console.log('receiving code from first peer')
-      console.log(remoteSignal)
       let peer = this.props.createPeer({ trickle: false })
       peer.on('signal', signal => {
-        let localCode = JSON.stringify(signal)
-        console.log('local code:', localCode)
+        let localCode = btoa(JSON.stringify(signal))
         this.setState({ localCode })
       })
       peer.on('connect', this.props.next)

@@ -38,7 +38,7 @@ const ConnectionInitiator = React.createClass({
     if(this.props.localCode) {
       return <div>
         Your code:
-        <pre>
+        <pre className='u-base64'>
           {this.props.localCode}
         </pre>
       </div>
