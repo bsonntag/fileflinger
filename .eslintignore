@@ -1,0 +1,7 @@
+# /node_modules/* and /bower_components/* are ignored by default
+
+# Ignore coverage report
+coverage/*
+
+# Ignore build files
+build/*
