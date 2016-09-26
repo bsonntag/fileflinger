@@ -1,6 +1,8 @@
 import _ from 'lodash'
 import React, { PropTypes } from 'react'
 
+import SignalEncoder from '../helpers/signal-encoder'
+
 import ConnectionInitiator from './ConnectionInitiator.jsx'
 import ConnectionReceiver from './ConnectionReceiver.jsx'
 
@@ -27,34 +29,39 @@ const CodeExchanger = React.createClass({
     }
   },
   createCode() {
-    let peer = this.props.createPeer({ initiator: true, trickle: false })
-    peer.on('signal', signal => {
-      let localCode = btoa(JSON.stringify(signal))
-      this.setState({ localCode })
-    })
-    peer.on('connect', this.props.next)
+    let peer = this.createPeer()
     this.setState({ peer })
   },
+  createPeer() {
+    let peer = this.props.createPeer({
+      initiator: this.props.isInitiator,
+      trickle: false,
+    })
+    peer.on('signal', this.setLocalCode)
+    peer.on('connect', this.props.next)
+    return peer
+  },
+  setLocalCode(signal) {
+    let localCode = SignalEncoder.encode(signal)
+    this.setState({ localCode })
+  },
   receiveCode(remoteCode) {
-    let remoteSignal = JSON.parse(atob(remoteCode))
+    let remoteSignal = SignalEncoder.decode(remoteCode)
     if(this.props.isInitiator) {
       this.state.peer.signal(remoteSignal)
     }
     else {
-      let peer = this.props.createPeer({ trickle: false })
-      peer.on('signal', signal => {
-        let localCode = btoa(JSON.stringify(signal))
-        this.setState({ localCode })
-      })
-      peer.on('connect', this.props.next)
+      let peer = this.createPeer()
       peer.signal(remoteSignal)
       this.setState({ peer })
     }
     this.setState({ remoteCode })
   },
   handleCancel(event) {
-    event.preventDefault()
-    event.stopPropagation()
+    if(event) {
+      event.preventDefault()
+      event.stopPropagation()
+    }
     this.props.releasePeer()
     this.props.cancel()
   },
