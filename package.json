@@ -7,8 +7,10 @@
   "scripts": {
     "bundle": "parcel build src/index.html",
     "lint": "eslint src",
+    "lint-staged": "lint-staged",
     "start": "parcel --out-dir build src/index.html"
   },
+  "pre-commit": "lint-staged",
   "dependencies": {
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
@@ -22,6 +24,17 @@
     "eslint": "^5.6.0",
     "eslint-config-seegno": "^10.0.0",
     "eslint-plugin-react": "^7.11.1",
-    "parcel-bundler": "^1.9.7"
+    "lint-staged": "^7.3.0",
+    "parcel-bundler": "^1.9.7",
+    "pre-commit": "^1.2.2"
+  },
+  "lint-staged": {
+    "ignore": [
+      "build",
+      "dist"
+    ],
+    "linters": {
+      "**/*.js": "eslint"
+    }
   }
 }
