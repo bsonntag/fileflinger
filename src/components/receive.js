@@ -1,6 +1,7 @@
 import ConnectionReceiver from './connection-receiver';
 import React, { Fragment } from 'react';
 import ReceivingPeer from './receiving-peer';
+import bytes from 'bytes';
 
 const Receive = () => (
   <ReceivingPeer>
@@ -25,7 +26,7 @@ const Receive = () => (
 
               <div>
                 {'Size: '}
-                {file.size}
+                {bytes(file.size)}
               </div>
             </Fragment>
           )}
