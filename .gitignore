@@ -37,7 +37,9 @@ jspm_packages
 # Optional REPL history
 .node_repl_history
 
-# Build folder
+# Build and cache folders
+.cache
 build
+dist
 
 .env
