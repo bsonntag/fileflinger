@@ -1,58 +1,27 @@
 import ConnectionInitiator from './connection-initiator';
 import FilePicker from './file-picker';
-import React, { Component } from 'react';
+import React from 'react';
+import SendingPeer from './sending-peer';
 
-class Send extends Component {
-
-  state = {
-    peer: null,
-  }
-
-  handleConnection = peer => {
-    this.setState({ peer });
-  }
-
-  sendFile = file => {
-    if (!file) {
-      return;
-    }
-
-    const { peer } = this.state;
-
-    peer.on('data', data => {
-      if (String(data) === 'ok') {
-        peer.send(file);
+const Send = () => (
+  <SendingPeer>
+    {({ code, connected, sendFile, setRemoteCode }) => {
+      if (!connected) {
+        return (
+          <ConnectionInitiator
+            code={code}
+            onRemoteCode={setRemoteCode}
+          />
+        );
       }
-    });
 
-    peer.send(JSON.stringify({
-      name: file.name,
-      size: file.size,
-    }));
-  }
-
-  componentWillUnmount() {
-    const { peer } = this.state;
-
-    if (peer) {
-      peer.destroy();
-    }
-  }
-
-  render() {
-    const { peer } = this.state;
-
-    if (!peer) {
-      return <ConnectionInitiator onConnected={this.handleConnection} />;
-    }
-
-    return (
-      <div>
-        <FilePicker onChange={this.sendFile} />
-      </div>
-    );
-  }
-
-}
+      return (
+        <div>
+          <FilePicker onChange={sendFile} />
+        </div>
+      );
+    }}
+  </SendingPeer>
+);
 
 export default Send;
