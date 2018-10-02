@@ -1,0 +1,3 @@
+.NavLink.active {
+  color: var(--main-color-dark);
+}

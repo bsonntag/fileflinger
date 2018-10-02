@@ -1,0 +1,8 @@
+.Link {
+  color: var(--main-color);
+  text-decoration: none;
+}
+
+.Link:hover {
+  color: var(--main-color-dark);
+}
