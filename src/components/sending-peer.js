@@ -17,8 +17,10 @@ class SendingPeer extends Component {
       onCode: code => this.setState({ code }),
       onConnected: () => this.setState({ connected: true }),
       onDisconnected: () => {
-        this.setState({ connected: false });
-        this.initializePeer();
+        if (this.peer) {
+          this.setState({ connected: false });
+          this.initializePeer();
+        }
       },
     });
   }
@@ -28,8 +30,11 @@ class SendingPeer extends Component {
   }
 
   componentWillUnmount() {
-    if (this.peer) {
-      this.peer.destroy();
+    const peer = this.peer;
+
+    if (peer) {
+      this.peer = null;
+      peer.destroy();
     }
   }
 
