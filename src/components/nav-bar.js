@@ -1,24 +1,18 @@
 import './nav-bar.css';
-import { NavLink } from 'react-router-dom';
+import NavLink from './links/nav-link';
 import React from 'react';
 
 const NavBar = () => (
-  <nav>
-    <ul>
-      <li>
-        <NavLink
-          className={'nav-link'}
-          to={'/send'}
-        >
+  <nav className={'NavBar'}>
+    <ul className={'NavBar-list'}>
+      <li className={'NavBar-listItem'}>
+        <NavLink to={'/send'}>
           {'Send'}
         </NavLink>
       </li>
 
-      <li>
-        <NavLink
-          className={'nav-link'}
-          to={'/receive'}
-        >
+      <li className={'NavBar-listItem'}>
+        <NavLink to={'/receive'}>
           {'Receive'}
         </NavLink>
       </li>

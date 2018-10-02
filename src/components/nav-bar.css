@@ -1,7 +1,10 @@
-.nav-link {
-  color: gray;
+.NavBar {
 }
 
-.nav-link.active {
-  color: black;
+.NavBar-list {
+  display: flex;
+}
+
+.NavBar-listItem:not(:last-child) {
+  margin-right: 2em;
 }
