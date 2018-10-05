@@ -5,8 +5,10 @@ import React from 'react';
 import Receive from './receive';
 import Send from './send';
 
+const basename = process.env.NODE_ENV === 'production' ? 'fileflinger' : null; // eslint-disable-line no-process-env
+
 const App = () => (
-  <BrowserRouter>
+  <BrowserRouter basename={basename}>
     <Page>
       <Switch>
         <Route
