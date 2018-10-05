@@ -5,7 +5,8 @@
   "license": "MIT",
   "author": "Benjamim Sonntag <benjamimsonntag@gmail.com>",
   "scripts": {
-    "bundle": "parcel build src/index.html",
+    "bundle": "parcel build --public-url /fileflinger src/index.html",
+    "deploy": "gh-pages --dist dist --message \"Update website\"",
     "lint": "eslint src",
     "lint-staged": "lint-staged",
     "start": "parcel --out-dir build src/index.html"
