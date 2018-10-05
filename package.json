@@ -27,6 +27,7 @@
     "eslint": "^5.6.0",
     "eslint-config-seegno": "^10.0.0",
     "eslint-plugin-react": "^7.11.1",
+    "gh-pages": "^2.0.1",
     "lint-staged": "^7.3.0",
     "parcel-bundler": "^1.9.7",
     "pre-commit": "^1.2.2"
