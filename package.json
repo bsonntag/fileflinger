@@ -21,13 +21,14 @@
     "simple-peer": "^9.1.2"
   },
   "devDependencies": {
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-react": "^6.24.1",
+    "@babel/core": "^7.4.3",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/preset-react": "^7.0.0",
     "eslint": "^5.16.0",
     "eslint-config-seegno": "^13.0.0",
     "lint-staged": "^7.3.0",
-    "parcel-bundler": "^1.9.7",
+    "parcel": "^1.12.3",
     "pre-commit": "^1.2.2"
   },
   "lint-staged": {
