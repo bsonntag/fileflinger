@@ -6,7 +6,7 @@
   "author": "Benjamim Sonntag <benjamimsonntag@gmail.com>",
   "scripts": {
     "bundle": "parcel build src/index.html",
-    "lint": "eslint src",
+    "lint": "eslint .",
     "lint-staged": "lint-staged",
     "start": "parcel --out-dir build src/index.html"
   },
@@ -24,9 +24,8 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-react": "^6.24.1",
-    "eslint": "^5.6.0",
-    "eslint-config-seegno": "^10.0.0",
-    "eslint-plugin-react": "^7.11.1",
+    "eslint": "^5.16.0",
+    "eslint-config-seegno": "^13.0.0",
     "lint-staged": "^7.3.0",
     "parcel-bundler": "^1.9.7",
     "pre-commit": "^1.2.2"
